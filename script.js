@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
         slider = document.querySelector('.offer__slider'),
         slidesWrapper = document.querySelector('.offer__slider-wrapper'),
         slidesField = document.querySelector('.offer__slider-inner'),
-        width = window.getComputedStyle(slidesWrapper).width,
         height = window.getComputedStyle(slidesWrapper).height;
 
-        let slideIndex = 1;
+        let width = window.getComputedStyle(slidesWrapper).width;
+        let slideIndex = 0;
         let offset = 0;
 
 
@@ -18,7 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesField.style.transition = '0.5s all';
     slidesWrapper.style.overflow = 'hidden';
 
-    slides.forEach(slide => slide.style.width = width);
+    window.addEventListener('resize', function(e) {
+
+        width = window.getComputedStyle(slidesWrapper).width;
+        slides.forEach(slide => slide.style.width = width);
+
+    });
+
+    // slides.forEach(slide => slide.style.width = width);
 
     function deleteNoDigits(str) {
         return +str.replace(/\D/g, '');
